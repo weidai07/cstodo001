@@ -14,7 +14,7 @@ namespace ToDoList.Controllers
     }
 
     [HttpGet("/items/new")]
-    public ActionResult CreateForm()
+    public ActionResult New()
     {
       return View();
     }
@@ -32,6 +32,28 @@ namespace ToDoList.Controllers
       Item.ClearAll();
       return View();
     }
-    
+
+    [Route("/items/{id}")]
+    public ActionResult Show(int id)
+    {
+      Item theItem = Item.Find(id);
+      return View(theItem);
+    }
+
+    [HttpGet("/items/destroy/{id}")]
+    public ActionResult Destroy(int id)
+    {
+      Item.DestroyItem(id);
+      return RedirectToAction("Index");
+    }
+
+    // [HttpGet("/items/{id}")]
+    // public ActionResult Show(int id)
+    // {
+    //   Item theItem = Item.Find(id);
+    //   return View(theItem);
+    // }
+
+
   }
 }

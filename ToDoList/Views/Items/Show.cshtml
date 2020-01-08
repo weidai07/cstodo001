@@ -1,0 +1,11 @@
+@using ToDoList.Models;
+
+<p>@Model.Description</p>
+
+<form action="/items/destroy" method="post">
+    <label for="destroy">Click below to destroy this item</label>
+    <input id="@Model.Id" name="destroy">
+    <button type="submit">Destroy</button>
+</form>
+
+<a href="/items/destroy/@Model.Id">Click here to delete this item off of your list</a>
