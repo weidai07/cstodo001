@@ -27,7 +27,7 @@ namespace ToDoList.Models
 
     public static Item Find(int searchId)
     {
-      return _instances[searchId-1];
+      return _instances[searchId -1 ];
     }
     
     public static void DestroyItem(int id)

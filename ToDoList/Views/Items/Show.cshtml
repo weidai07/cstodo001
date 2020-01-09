@@ -1,11 +1,12 @@
 @using ToDoList.Models;
+@using System.Collections.Generic;
 
-<p>@Model.Description</p>
+<h1>To Do List Item Details: </h1>
 
-<form action="/items/destroy" method="post">
-    <label for="destroy">Click below to destroy this item</label>
-    <input id="@Model.Id" name="destroy">
-    <button type="submit">Destroy</button>
-</form>
+<h2>@Model["item"].Description</h2>
+<h3>Category: @Model["category"].Name</h3>
 
-<a href="/items/destroy/@Model.Id">Click here to delete this item off of your list</a>
+<a href='/categories/@Model["category"].Id/items/new'>Add another item</a>
+<a href='/categories'>View all categories</a><h1>To Do List Item Details: </h1>
+
+<a href='/items/destroy/@Model["item"].Id'>Click here to delete this item off of your list</a>
