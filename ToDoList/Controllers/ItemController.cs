@@ -1,64 +1,23 @@
 using Microsoft.AspNetCore.Mvc;
 using ToDoList.Models;
 using System.Collections.Generic;
+using Sytem.Linq;
 
 namespace ToDoList.Controllers
 {
   public class ItemsController : Controller
   {
-    // [HttpGet("/items")]
-    // public ActionResult Index()
-    // {
-    //   List<Item> allItems = Item.GetAll();
-    //   return View(allItems);
-    // }
+    private readonly ToDoListContext _db;
 
-    [HttpGet("/categories/{categoryId}/items/new")]
-    public ActionResult New(int categoryId)
+    public ItemsController(ToDoListContext db)
     {
-      Category category = Category.Find(categoryId);
-      return View(category);
+      _db = db;
     }
 
-    // [HttpPost("/items")]
-    // public ActionResult Create(string description)
-    // {
-    //   Item myItem = new Item(description);
-    //   return RedirectToAction("Index");
-    // }
-
-    [HttpPost("/items/delete")]
-    public ActionResult DeleteAll()
+    public ActionResult Index()
     {
-      Item.ClearAll();
-      return View();
+      List<Item> model = _db.Items.ToList();
+      return View(model);
     }
-
-    [HttpGet("/categories/{categoryId}/items/{itemId}")]
-    public ActionResult Show(int categoryId, int itemId)
-    {
-        Item item = Item.Find(itemId);
-        Category category = Category.Find(categoryId);
-        Dictionary<string, object> model = new Dictionary<string, object>();
-        model.Add("item", item);
-        model.Add("category", category);
-        return View(model);
-    }
-
-    // [HttpGet("/items/destroy/{id}")]
-    // public ActionResult Destroy(int id)
-    // {
-    //   Item.DestroyItem(id);
-    //   return RedirectToAction("Index");
-    // }
-
-    // [HttpGet("/items/{id}")]
-    // public ActionResult Show(int id)
-    // {
-    //   Item theItem = Item.Find(id);
-    //   return View(theItem);
-    // }
-
-
   }
 }
