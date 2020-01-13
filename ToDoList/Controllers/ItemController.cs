@@ -45,12 +45,12 @@ namespace ToDoList.Controllers
         return View(model);
     }
 
-    [HttpGet("/items/destroy/{id}")]
-    public ActionResult Destroy(int id)
-    {
-      Item.DestroyItem(id);
-      return RedirectToAction("Index");
-    }
+    // [HttpGet("/items/destroy/{id}")]
+    // public ActionResult Destroy(int id)
+    // {
+    //   Item.DestroyItem(id);
+    //   return RedirectToAction("Index");
+    // }
 
     // [HttpGet("/items/{id}")]
     // public ActionResult Show(int id)
